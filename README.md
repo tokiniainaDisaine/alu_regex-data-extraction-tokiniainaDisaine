@@ -14,8 +14,8 @@ Supported data types include:
 - Currency amounts
 
 Each data type has:
-- An extraction function (`extract_and_validate_*`) that finds valid matches in text.
-- A validation function (`validate_*`) that checks if a single string is valid.
+- An extraction method (`extract_*`) that finds valid matches in text.
+- A validation method (`validate_*`) that checks if a single string is valid.
 
 ## File Structure
 
@@ -29,20 +29,20 @@ Each data type has:
 ### Extraction Example
 
 ```python
-from src.regex_patterns import extract_and_validate_emails
+from src.regex_patterns import RegexExtractor
 
 text = "Contact us at support@example.com or admin@company.co.uk"
-emails = extract_and_validate_emails(text)
+emails = RegexExtractor.extract_emails(text)
 print(emails)  # ['support@example.com', 'admin@company.co.uk']
 ```
 
 ### Validation Example
 
 ```python
-from src.validators import validate_emails
+from src.validators import RegexValidator
 
-print(validate_emails("support@example.com"))  # True
-print(validate_emails("invalid-email"))        # False
+print(RegexValidator.validate_email("support@example.com"))  # True
+print(RegexValidator.validate_email("invalid-email"))        # False
 ```
 
 ## Running Tests
